@@ -1,0 +1,14 @@
+{
+  "name": "translation-yml",
+  "version": "1.0.0",
+  "description": "Create a translation pull request yml file",
+  "main": "index.js",
+  "author": "Yann Lojewski <yann.lojewski.ext@corp.ovh.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "fast-diff": "^1.2.0",
+    "simple-git": "^3.15.0",
+    "slugify": "^1.6.5"
+  }
+}
