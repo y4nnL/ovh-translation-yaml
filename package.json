@@ -1,5 +1,5 @@
 {
-  "name": "translation-yml",
+  "name": "ovh-translation-yml",
   "version": "1.0.0",
   "description": "Create a translation push request yml file",
   "main": "index.js",
@@ -12,6 +12,6 @@
     "slugify": "^1.6.5"
   },
   "bin": {
-    "translation-yml": "./translation-yml.js"
+    "ovh-translation-yml": "./translation-yml.js"
   }
 }
