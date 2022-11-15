@@ -1,7 +1,7 @@
 {
   "name": "translation-yml",
   "version": "1.0.0",
-  "description": "Create a translation pull request yml file",
+  "description": "Create a translation push request yml file",
   "main": "index.js",
   "author": "Yann Lojewski <yann.lojewski.ext@corp.ovh.com>",
   "license": "MIT",
