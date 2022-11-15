@@ -13,16 +13,16 @@ async function main() {
     command
         .version('1.0.0')
         .description('Create a translation pull request yml file')
-        .option('-g, --git  <value>', 'Path to git repository, default is the current working directory', cwd)
-        .option('-b, --branch <value>', 'The branch name, default is develop', 'develop')
-        .option('-b, --base-branch <value>', 'The base branch name, default is master', 'master')
+        .option('-g, --git <value>', 'Path to git repository', cwd)
+        .option('-f, --feature <value>', 'The feature branch name', 'develop')
+        .option('-b, --base <value>', 'The base branch name on witch the diff is made', 'master')
         .option('-o, --output <value>', 'The output yml file name, default is the branch name')
         .parse(process.argv);
 
     const options = command.opts();
 
     if (!options.output) {
-        options.output = `${cwd}/${slugify(options.branch)}.yml`;
+        options.output = `${cwd}/${slugify(options.feature)}.yml`;
     }
 
     const git = simpleGit({
@@ -32,14 +32,14 @@ async function main() {
         trimmed: false,
     });
 
-    await git.checkout(options.branch);
+    await git.checkout(options.feature);
     const status = await git.status();
 
-    if (status.current !== options.branch) {
-        throw new Error(`Unable to checkout "${options.branch}" branch`);
+    if (status.current !== options.feature) {
+        throw new Error(`Unable to checkout "${options.feature}" branch`);
     }
 
-    const diff = await git.diff([options.baseBranch, '--', '*Messages_fr_FR.json']);
+    const diff = await git.diff([options.base, '--', '*Messages_fr_FR.json']);
     const yml = diff.split('diff').reduce((content, part) => {
         const [, path] = part.match(/\+\+\+ b\/(.*?\/Messages_fr_FR.json)/) ?? [];
 
