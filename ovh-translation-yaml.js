@@ -11,7 +11,7 @@ async function main() {
     const cwd = process.cwd();
 
     command
-        .version('1.0.1')
+        .version('1.0.2')
         .description('Create a translation pull request yaml file')
         .option('-g, --git <value>', 'Path to git repository', cwd)
         .option('-f, --feature <value>', 'The feature branch name', 'develop')
