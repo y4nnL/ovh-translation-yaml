@@ -10,5 +10,8 @@
     "fast-diff": "^1.2.0",
     "simple-git": "^3.15.0",
     "slugify": "^1.6.5"
+  },
+  "bin": {
+    "translation-yml": "./translation-yml.js"
   }
 }

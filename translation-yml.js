@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 async function main() {
     const fs = require('fs');
     const { Command } = require('commander');
@@ -40,21 +42,34 @@ async function main() {
     const diff = await git.diff([options.baseBranch, '--', '*Messages_fr_FR.json']);
     const yml = diff.split('diff').reduce((content, part) => {
         const [, path] = part.match(/\+\+\+ b\/(.*?\/Messages_fr_FR.json)/) ?? [];
+
         if (!path) {
             return content;
         }
+
+        const additions = part.match(/\+ +?".+?":/g);
+
+        if (!additions) {
+            return content;
+        }
+
         content.push(`- ${path}:`);
-        part.match(/\+ +?".+?":/g).forEach(addition => {
+
+        additions.forEach(addition => {
             const [, key] = addition.match(/\+ +?"(.+?)":/);
-            if (part.match(new RegExp(`- +?"${key}":`))) {
-                const additionDiff = fastDiff(
-                    part.match(new RegExp(`\\+ +?"${key}": +?"(.*?)"`))[1],
-                    part.match(new RegExp(`- +?"${key}": +?"(.*?)"`))[1],
-                );
-                if (additionDiff.length === 1) return;
-            }
+
+            // The translation did not change
+            if (
+                part.match(new RegExp(`- +?"${key}":`)) &&
+                fastDiff(
+                    part.match(new RegExp(`\\+ +?"${key}": +?"(.*?)"`))?.pop(),
+                    part.match(new RegExp(`- +?"${key}": +?"(.*?)"`))?.pop(),
+                ).length === 1
+            ) return;
+
             content.push(`  - ${key}`);
         });
+
         return content;
     }, []).join('\n');
     
