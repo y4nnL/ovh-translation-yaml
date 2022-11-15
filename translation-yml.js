@@ -13,7 +13,7 @@ async function main() {
     command
         .version('1.0.0')
         .description('Create a translation pull request yml file')
-        .option('-g, --git  <value>', 'Path to git directory', cwd)
+        .option('-g, --git  <value>', 'Path to git repository, default is the current working directory', cwd)
         .option('-b, --branch <value>', 'The branch name, default is develop', 'develop')
         .option('-b, --base-branch <value>', 'The base branch name, default is master', 'master')
         .option('-o, --output <value>', 'The output yml file name, default is the branch name')
