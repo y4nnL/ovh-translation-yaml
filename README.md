@@ -3,7 +3,7 @@ ovh-translation-yaml
 
 Create a translation push request yaml file
 
-## Installation  
+## Install  
 
 
 Using `npm`
@@ -44,5 +44,9 @@ The path to the git repository. Default is the current working directory
 ### -o --output
 
 The output path / filename of the yaml
+
+### -c --clipboard
+
+Copy the output to the clipboard only
 
 
