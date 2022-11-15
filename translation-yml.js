@@ -15,7 +15,7 @@ async function main() {
         .description('Create a translation pull request yml file')
         .option('-g, --git <value>', 'Path to git repository', cwd)
         .option('-f, --feature <value>', 'The feature branch name', 'develop')
-        .option('-b, --base <value>', 'The base branch name on witch the diff is made', 'master')
+        .option('-b, --base <value>', 'The base branch name on which the diff is made', 'master')
         .option('-o, --output <value>', 'The output yml file name, default is the branch name')
         .parse(process.argv);
 

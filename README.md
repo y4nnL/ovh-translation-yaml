@@ -35,7 +35,7 @@ The name of the feature branch where all the  Messages_fr_FR.json files are crea
 
 ### -b --base
 
-The name of the base branchon which the `git diff` command is made. Default is `master`
+The name of the base branch on which the `git diff` command is made. Default is `master`
 
 ### -g --git
 
