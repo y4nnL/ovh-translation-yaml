@@ -73,8 +73,8 @@ async function main() {
         return content;
     }, []).join('\n');
     
-    console.log(`Created ${options.output}`);
     fs.writeFileSync(options.output, yml, 'utf-8');
+    console.log(`Created ${options.output}`);
 }
 
 main();
