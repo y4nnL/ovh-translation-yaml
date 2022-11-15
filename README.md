@@ -1,30 +1,30 @@
-Translation-yml
+Translation-yaml
 =
 
-Create a translation push request yml file
+Create a translation push request yaml file
 
 ## Installation  
 
 
 Using `npm`
 ```
-npm install -g ovh-translation-yml
+npm install -g ovh-translation-yaml
 ```
 
 Using `yarn`
 ```
-yarn global add ovh-translation-yml
+yarn global add ovh-translation-yaml
 ```
 
 ## Usage
 
 Go into your current git repository
 ```
-ovh-translation-yml -f feat/my-feature-branch
+ovh-translation-yaml -f feat/my-feature-branch
 ```
 Or use the `-g` `--git` option
 ```
-ovh-translation-yml -f feat/my-feature-branch -g path/to/git/repository
+ovh-translation-yaml -f feat/my-feature-branch -g path/to/git/repository
 ```
 
 ## Options
@@ -43,6 +43,6 @@ The path to the git repository. Default is the current working directory
 
 ### -o --output
 
-The output path / filename of the yml
+The output path / filename of the yaml
 
 

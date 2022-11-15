@@ -1,7 +1,7 @@
 {
-  "name": "ovh-translation-yml",
+  "name": "ovh-translation-yaml",
   "version": "1.0.0",
-  "description": "Create a translation push request yml file",
+  "description": "Create a translation push request yaml file",
   "main": "index.js",
   "author": "Yann Lojewski <yann.lojewski.ext@corp.ovh.com>",
   "license": "MIT",
@@ -12,6 +12,6 @@
     "slugify": "^1.6.5"
   },
   "bin": {
-    "ovh-translation-yml": "./translation-yml.js"
+    "ovh-translation-yaml": "./translation-yaml.js"
   }
 }
