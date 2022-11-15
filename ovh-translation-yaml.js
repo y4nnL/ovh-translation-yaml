@@ -11,7 +11,7 @@ async function main() {
     const cwd = process.cwd();
 
     command
-        .version('1.0.2')
+        .version('1.0.3')
         .description('Create a translation pull request yaml file')
         .option('-g, --git <value>', 'Path to git repository', cwd)
         .option('-f, --feature <value>', 'The feature branch name', 'develop')
@@ -39,31 +39,27 @@ async function main() {
         throw new Error(`Unable to checkout "${options.feature}" branch`);
     }
 
-    const diff = await git.diff([options.base, '--', '*Messages_fr_FR.json']);
+    const diff = await git.diff([options.base, '-U0', '--', '*Messages_fr_FR.json']);
+
     const yaml = diff.split('diff').reduce((content, part) => {
         const [, path] = part.match(/\+\+\+ b\/(.*?\/Messages_fr_FR.json)/) ?? [];
-
-        if (!path) {
-            return content;
-        }
-
         const additions = part.match(/\+ +?".+?":/g);
 
-        if (!additions) {
+        if (!path || !additions) {
             return content;
         }
 
         content.push(`- ${path}:`);
 
         additions.forEach(addition => {
-            const [, key] = addition.match(/\+ +?"(.+?)":/);
+            const [, key] = addition.match(/\+ *?"(.+?)" *?:/);
 
             // The translation did not change
             if (
                 part.match(new RegExp(`- +?"${key}":`)) &&
                 fastDiff(
-                    part.match(new RegExp(`\\+ +?"${key}": +?"(.*?)"`))?.pop(),
-                    part.match(new RegExp(`- +?"${key}": +?"(.*?)"`))?.pop(),
+                    part.match(new RegExp(`\\+ *?"${key}" *?: *?"(.*?)"`))?.pop(),
+                    part.match(new RegExp(`\\- *?"${key}" *?: *?"(.*?)"`))?.pop(),
                 ).length === 1
             ) return;
 
