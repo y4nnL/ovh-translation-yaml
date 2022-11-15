@@ -11,7 +11,7 @@ async function main() {
     const cwd = process.cwd();
 
     command
-        .version('1.0.0')
+        .version('1.0.1')
         .description('Create a translation pull request yaml file')
         .option('-g, --git <value>', 'Path to git repository', cwd)
         .option('-f, --feature <value>', 'The feature branch name', 'develop')
@@ -73,7 +73,7 @@ async function main() {
         return content;
     }, []).join('\n');
     
-    fs.writeFileSync(options.output, yaml, 'utf-8');
+    await fs.promises.writeFile(options.output, yaml, 'utf-8');
     console.log(`Created ${options.output}`);
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "ovh-translation-yaml",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a translation push request yaml file",
   "main": "index.js",
   "author": "Yann Lojewski <yann.lojewski.ext@corp.ovh.com>",

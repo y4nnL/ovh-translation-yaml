@@ -1,4 +1,4 @@
-Translation-yaml
+ovh-translation-yaml
 =
 
 Create a translation push request yaml file
